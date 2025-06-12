@@ -7,3 +7,5 @@ router.get('/', async () => {
 })
 
 router.resource('user', 'UsersController').apiOnly()
+router.resource('prenotaziones', 'PrenotazionesController').apiOnly()
+router.resource('corsi', 'corsos_controller').apiOnly()
