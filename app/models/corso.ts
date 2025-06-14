@@ -5,13 +5,15 @@ import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
 import Prenotazione from './prenotazione.js'
 
 export default class Corso extends BaseModel {
+  public static table = 'corsi'
+
   @column({ isPrimary: true })
   declare id: number
 
   @column()
   declare titolo: string
 
-  @column()
+  @column({ columnName: 'descrizione_corso' })
   declare descrizioneCorso: string
 
   @column()
@@ -23,8 +25,8 @@ export default class Corso extends BaseModel {
   @belongsTo(() => User, { foreignKey: 'istruttoreId' })
   declare istruttore: BelongsTo<typeof User>
 
-  @hasMany(() => Prenotazione)
-  declare prenotazione: HasMany<typeof Prenotazione>
+  // @hasMany(() => Prenotazione)
+  // declare prenotazione: HasMany<typeof Prenotazione>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

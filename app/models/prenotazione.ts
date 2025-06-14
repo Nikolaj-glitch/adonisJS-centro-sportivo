@@ -5,6 +5,8 @@ import Corso from './corso.js'
 import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
 export default class Prenotazione extends BaseModel {
+  public static table = 'prenotazioni'
+
   @column({ isPrimary: true })
   declare id: number
 
@@ -17,7 +19,9 @@ export default class Prenotazione extends BaseModel {
   @column.date()
   declare dataPrenotazione: DateTime
 
-  @belongsTo(() => User)
+  @belongsTo(() => User, {
+    foreignKey: 'utenteId',
+  })
   declare utente: BelongsTo<typeof User>
 
   @belongsTo(() => Corso)
